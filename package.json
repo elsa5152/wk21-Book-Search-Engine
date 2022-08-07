@@ -4,12 +4,12 @@
   "description": "",
   "main": "server/server.js",
   "scripts": {
-    "start": "node server/server.js",
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i",
     "build": "cd client && npm run build",
-    "heroku-postbuild": "cd client && npm run build"
-
+    "heroku-postbuild": "cd client && npm run build",
+    "start:dev": "concurrently \"cd server && npm run watch\" \"cd client && npm start\""
   },
   "keywords": [],
   "author": "",
@@ -22,7 +22,10 @@
     "@apollo/react-hooks": "^4.0.0",
     "apollo-boost": "^0.4.9",
     "apollo-server-express": "^3.10.0",
+    "if-env": "^1.0.4",
     "mongoose": "^6.5.1",
+    "proxy": "^1.0.2",
+    "redis-server": "^1.2.2",
     "schema-utils": "^4.0.0"
   }
 }

@@ -10,7 +10,7 @@ import { REMOVE_BOOK } from '../utils/mutations';
 const SavedBooks = () => {
   const { loading, data } = useQuery(GET_ME);
 
-  const [deleteBook, { error }] = useMutation(REMOVE_BOOK);
+  const [removeBook, { error }] = useMutation(REMOVE_BOOK);
 
   const userData = data?.me || {};
 
@@ -22,22 +22,12 @@ const SavedBooks = () => {
     }
 
     try {
-      await deleteBook({
+      await removeBook({
         variables: { bookId },
       });
 
       // upon success, remove book's id from localStorage
       removeBookId(bookId);
-      document.getElementById(bookId).remove();
-      let counterEl = document.getElementById('counter');
-      let currentNum = parseInt(counterEl.innerText.split(' ')[1]);
-      if (currentNum === 1) {
-        return (counterEl.innerText = 'You have no saved books!');
-      } else {
-        counterEl.innerText = `Viewing ${currentNum - 1} saved ${
-          currentNum === 1 ? 'book' : 'books'
-        }`;
-      }
     } catch (err) {
       console.error(err);
     }
@@ -50,38 +40,42 @@ const SavedBooks = () => {
 
   return (
     <>
-       <>
       <Jumbotron fluid className='text-light bg-dark'>
         <Container>
-          <h1>Viewing saved books!</h1>
+          <h1>Viewing {userData.username}'s books!</h1>
         </Container>
       </Jumbotron>
       <Container>
         <h2>
-          {userData.savedBooks.length
-            ? `Viewing ${userData.savedBooks.length} saved ${userData.savedBooks.length === 1 ? 'book' : 'books'}:`
+          {userData.savedBooks?.length
+            ? `Viewing ${userData.savedBooks.length} saved ${
+                userData.savedBooks.length === 1 ? 'book' : 'books'
+              }:`
             : 'You have no saved books!'}
         </h2>
         <CardColumns>
-          {userData.savedBooks.map((book) => {
+          {userData.savedBooks?.map((book) => {
             return (
               <Card key={book.bookId} border='dark'>
-                {book.image ? <Card.Img src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
+                {book.image ? (
+                  <Card.Img src={book.image} alt={`The cover for ${book.title}`} variant='top' />
+                ) : null}
                 <Card.Body>
                   <Card.Title>{book.title}</Card.Title>
                   <p className='small'>Authors: {book.authors}</p>
                   <Card.Text>{book.description}</Card.Text>
-                  <Button className='btn-block btn-danger' onClick={() => handleDeleteBook(book.bookId)}>
+                  <Button
+                    className='btn-block btn-danger'
+                    onClick={() => handleDeleteBook(book.bookId)}>
                     Delete this Book!
                   </Button>
+                  {error && <span className="ml-2">Something went wrong...</span>}
                 </Card.Body>
               </Card>
             );
           })}
         </CardColumns>
       </Container>
-    </>
-
     </>
   );
 };
