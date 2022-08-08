@@ -26,7 +26,6 @@
     "apollo-server-express": "^3.10.0",
     "if-env": "^1.0.4",
     "mongoose": "^6.5.1",
-    "prod": "^1.0.1",
     "proxy": "^1.0.2",
     "redis-server": "^1.2.2",
     "schema-utils": "^4.0.0"
