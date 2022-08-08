@@ -41,7 +41,7 @@ npm run develop
 
 ## Github code
 
-<a href="https://github.com/elsa5152/wk21-Book-Search-Engine.git" >wk20-React-React-Portfolio</a>
+<a href="https://github.com/elsa5152/wk21-Book-Search-Engine.git" >wk21-Book-Search-Engine</a>
 
 ## Heroku Link
 
