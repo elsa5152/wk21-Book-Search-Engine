@@ -9,8 +9,7 @@
     "start:dev": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i",
     "seed": "cd server && npm run seed",
-    "heroku-postbuild": "cd client && npm run build",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "heroku-postbuild": "cd client && npm run build"
   },
   "keywords": [],
   "author": "Janarthani V Subramaniam",
