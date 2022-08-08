@@ -1,11 +1,12 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
+  "description": "",  
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "watch": "nodemon server.js"
+  
   },
   "keywords": [],
   "author": "",
@@ -21,4 +22,5 @@
   "devDependencies": {
     "nodemon": "^2.0.3"
   }
+ 
 }
