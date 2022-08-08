@@ -45,4 +45,4 @@ npm run develop
 
 ## Heroku Link
 
-[React-Portfolio](https://wk21-book-search-engine1.herokuapp.com/)
+[Book Search Engine](https://wk21-book-search-engine1.herokuapp.com/)
