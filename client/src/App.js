@@ -21,11 +21,12 @@ const authLink = setContext((_, { headers }) => {
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
-//define ApollpLoent
+
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
+
 
 function App() {
   return (
@@ -43,7 +44,7 @@ function App() {
             element={<SavedBooks />} 
           />
           <Route 
-            path='*'
+            path='/'
             element={<h1 className='display-2'>Wrong page!</h1>}
           />
         </Routes>
